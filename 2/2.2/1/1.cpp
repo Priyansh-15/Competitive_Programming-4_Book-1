@@ -112,3 +112,90 @@ int main()
         sol();
     return 0;
 }
+
+
+// Code 2:
+#include<bits/stdc++.h>
+using namespace std;
+ 
+typedef vector <int> vi;
+typedef pair< int ,int > pii;
+#define endl "\n"
+#define sd(val) scanf("%d",&val)
+#define ss(val) scanf("%s",&val)
+#define sl(val) scanf("%lld",&val)
+#define debug(val) printf("check%d\n",val)
+#define all(v) v.begin(),v.end()
+#define PB push_back
+#define MP make_pair
+#define FF first
+#define SS second
+#define ll long long
+#define MOD 1000000007
+#define f(i,a,b) for(int i=a;i<b;i++)
+#define clr(val) memset(val,0,sizeof(val))
+#define what_is(x) cerr << #x << " is " << x << endl; 
+#define FIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+ 
+struct PSIN{
+    int num;
+    int den;
+    PSIN(int a,int b)
+    {
+        num=a;
+        den=b;
+    }
+};
+
+bool comp1(PSIN* &a,PSIN* &b)
+{
+    return (a->den>b->den);
+}
+
+bool comp2(PSIN* &a,PSIN* &b)
+{
+    if(a->den==b->den)
+        return a->num<b->den;
+    return false;
+}
+
+void sort_frac(vector<PSIN*>&a)
+{
+    sort(a.begin(),a.end(),comp1);
+    sort(a.begin(),a.end(),comp2);
+}
+
+int sol()
+{
+    int n;
+    cin>>n;
+    vector<PSIN*>a;
+    for(int i=0;i<n;i++)
+    {
+        int num,den;
+        cin>>num>>den;
+        PSIN *temp=new PSIN(num,den);
+        a.push_back(temp);
+    }
+    sort_frac(a);
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]->num<<" "<<a[i]->den<<endl;
+    }
+    return 0;
+}
+ 
+int main() 
+{
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    ll t;
+    cin>>t;
+    while(t--)
+        sol();
+    return 0;
+}
